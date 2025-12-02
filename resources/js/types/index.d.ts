@@ -22,7 +22,7 @@ export interface Pagination {
 export type PageNumber = number;
 
 export interface UsersPageProps extends AppPageProps {
-    users: { data: User[] } & Pagination;
+    users: UserList[];
 }
 
 export interface BreadcrumbItem {

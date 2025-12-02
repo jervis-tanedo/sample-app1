@@ -15,9 +15,6 @@ const page = usePage<UsersPageProps>();
 
 store.setUsers(page.props.users);
 
-// function goTo(pageNumber: PageNumber) {
-//     router.get('/user-list', { page: pageNumber }, { preserveState: true });
-// }
 </script>
 
 <template>

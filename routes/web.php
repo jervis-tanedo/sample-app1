@@ -15,12 +15,12 @@ Route::get('dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('user-list', function(){
-    Inertia::render('UserList', [
+Route::get('user', function(){
+    return Inertia::render('User', [
         'users' => User::all(),
     ]);
-})->middleware(['auth', 'verified'])->name('user-list');
-//dd(User::all());
+})->middleware(['auth', 'verified'])->name('user');
+
 Route::get('test', function(){
     return Inertia::render('Test', [
         'users' => User::all(),

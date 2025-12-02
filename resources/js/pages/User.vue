@@ -6,7 +6,7 @@ import { useUserStore } from '@/stores/userlistStore';
 
 const breadcrumbItems: BreadcrumbItem[] = [
     { title: 'Dashboard', href: '/' },
-    { title: 'Users', href: '/user-list' },
+    { title: 'Users', href: '/user' },
 ];
 
 const store = useUserStore();
@@ -15,9 +15,6 @@ const page = usePage<UsersPageProps>();
 
 store.setUsers(page.props.users);
 
-// function goTo(pageNumber: PageNumber) {
-//     router.get('/user-list', { page: pageNumber }, { preserveState: true });
-// }
 </script>
 
 <template>
@@ -33,21 +30,21 @@ store.setUsers(page.props.users);
         <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
           <div class="p-6 bg-white border-b border-gray-200">
             <!-- User list content goes here -->
-            <table>
+            <table class="w-full">
                 <thead>
                     <tr>
-                        <th>ID</th>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Created at</th>
+                        <th class="text-black">ID</th>
+                        <th class="text-black">Name</th>
+                        <th class="text-black">Email</th>
+                        <th class="text-black">Created at</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr v-for="user in store.users" :key="user.id">
-                        <td>{{ user.id }}</td>
-                        <td>{{ user.name }}</td>
-                        <td>{{ user.email }}</td>
-                        <td>{{ user.created_at }}</td>
+                        <td class="text-black">{{ user.id }}</td>
+                        <td class="text-black">{{ user.name }}</td>
+                        <td class="text-black">{{ user.email }}</td>
+                        <td class="text-black">{{ user.created_at }}</td>
                     </tr>
                 </tbody>
             </table>

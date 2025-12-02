@@ -11,5 +11,5 @@ export const useUserStore = defineStore('user', () => {
     users.value = payload;
 }
     console.log(users);
-    return { users, pagination, setUsers };
+    return { users, setUsers };
 });
