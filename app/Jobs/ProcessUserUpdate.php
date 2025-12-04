@@ -10,11 +10,12 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Mail;
+use App\Mail\UserUpdateMail;
 
 class ProcessUserUpdate implements ShouldQueue
 {
     use Queueable, Dispatchable, InteractsWithQueue, SerializesModels;
-
+    public User $user;
     /**
      * Create a new job instance.
      */
@@ -29,6 +30,9 @@ class ProcessUserUpdate implements ShouldQueue
     public function handle(): void
     {
         //
-        Mail::to($this->user->email)->send(new WelcomeMail($this->user));
+        Mail::raw('Your account has been updated successfully.', function ($message) {
+            $message->to($this->user->email)
+            ->subject('Account Update');
+        });
     }
 }
