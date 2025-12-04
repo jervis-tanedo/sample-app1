@@ -8,7 +8,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Facades\Validator;
-
+use App\Jobs\ProcessUserAuthLog;
+use App\Jobs\ProcessUserUpdate;
 class AuthController extends Controller
 {
     /**
@@ -74,14 +75,15 @@ class AuthController extends Controller
             'email' => 'required|email',
             'password' => 'required',
         ]);
-
+        ProcessUserAuthLog::dispatch()->onQueue('auth-logs');
+        
         if (!Auth::attempt($credentials)) {
             return response()->json(['message' => 'Invalid login details'], 401);
         }
 
         $user = Auth::user();
-        $token = $user->createToken('postman-token')->plainTextToken;
-
+        $token = $user->createToken('token')->plainTextToken;
+        ProcessUserUpdate::dispatch($user)->onQueue('send-mail');
         return response()->json([
             'success' => true,
             'token' => $token,

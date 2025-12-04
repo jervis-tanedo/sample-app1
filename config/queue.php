@@ -44,6 +44,23 @@ return [
             'after_commit' => false,
         ],
 
+        'rabbitmq' => [
+            'driver' => 'rabbitmq',
+            'host' => env('RABBITMQ_HOST', '127.0.0.1'),
+            'port' => env('RABBITMQ_PORT', 5672),
+            'username' => env('RABBITMQ_USER', 'guest'),
+            'password' => env('RABBITMQ_PASSWORD', 'guest'),
+            'queue' => env('RABBITMQ_QUEUE', 'default'),
+            'exchange' => env('RABBITMQ_EXCHANGE', 'default'),
+            'vhost' => env('RABBITMQ_VHOST', '/'),
+            'exchange_type' => env('RABBITMQ_EXCHANGE_TYPE', 'topic'),
+            'exchange' => env('RABBITMQ_EXCHANGE', null),
+            'ssl_params' => [
+                'verify_peer' => env('RABBITMQ_SSL_VERIFY_PEER', true),
+            ]
+        ],
+
+
         'beanstalkd' => [
             'driver' => 'beanstalkd',
             'host' => env('BEANSTALKD_QUEUE_HOST', 'localhost'),
